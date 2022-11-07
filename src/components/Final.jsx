@@ -32,7 +32,7 @@ export default function Final() {
         setGridArray(copyListItems);
         let sorted = sortGridArr(gridArray)
         if (JSON.stringify(copyListItems) === JSON.stringify(sorted)) {
-            console.log("Done")
+            alert("Welcome to the team!")
         }
     };
 
@@ -78,31 +78,33 @@ export default function Final() {
     }
 
     return (
-        <div className="w-full h-screen p-6">
-            <div className="flex flex-col gap-2 mx-auto w-full h-1/4 max-w-[500px] text-center justify-center items-center m-4">
-                <h1>Evaluation Test</h1>
-                <input
-                    type="text"
-                    onChange={getInputValue}
-                    className="px-4 py-4 text-4 h-4 border border-black-200 rounded-full"
-                    placeholder="Enter a number here"
-                />
-            </div>
-            <div
-                style={{ gridTemplateColumns: `repeat(${userValue}, 1fr` }}
-                className={`max-w-[70%] mx-auto grid grid-cols-${userValue} grid-rows-${userValue} rounded-md border border-1-gray-900 m-4`}>
-                {gridArray?.map((item, idx) => {
-                    return (
-                        <div key={idx * 1000 * Math.random()}
-                            className="p-[20px] max-h-[88px] text-[#18181B] text-center border-b border-r"
-                            onDragStart={(e) => dragStart(e, idx)}
-                            onDragEnter={(e) => dragEnter(e, idx)}
-                            onDragEnd={drop}
-                            draggable>
-                            {item}
-                        </div>
-                    )
-                })}
+        <div className='bg-black h-screen flex'>
+            <div className="mx-auto my-auto p-6 bg-white w-[70%] rounded-md">
+                <div className="flex flex-col gap-2 mx-auto w-full h-1/4 max-w-[500px] text-center justify-center items-center m-4">
+                    <h1>Evaluation Test</h1>
+                    <input
+                        type="text"
+                        onChange={getInputValue}
+                        className="px-4 py-4 text-4 h-4 border border-black-200 rounded-full"
+                        placeholder="Enter a number here"
+                    />
+                </div>
+                <div
+                    style={{ gridTemplateColumns: `repeat(${userValue}, 1fr` }}
+                    className={`max-w-[70%] mx-auto grid grid-cols-${userValue} grid-rows-${userValue} rounded-md border border-1-gray-900 m-4`}>
+                    {gridArray?.map((item, idx) => {
+                        return (
+                            <div key={idx * 1000 * Math.random()}
+                                className="p-[20px] max-h-[88px] text-[#18181B] text-center border-b border-r"
+                                onDragStart={(e) => dragStart(e, idx)}
+                                onDragEnter={(e) => dragEnter(e, idx)}
+                                onDragEnd={drop}
+                                draggable>
+                                {item}
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
