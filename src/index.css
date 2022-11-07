@@ -1,13 +1,46 @@
-body {
+/* @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --col-num: 0;
+    --row-num: 0;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 100%;
+    /* identical to box height, or 24px */
+    letter-spacing: -0.03em;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+
+  /* .scheduler-grid {
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: repeat(var(--col-num), 1fr);
+    grid-template-rows: repeat(var(--row-num), 1fr);
+    } */
+}
+
+/* body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
