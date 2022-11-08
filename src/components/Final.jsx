@@ -4,6 +4,8 @@ export default function Final() {
 
     // Variable Definitions
     let gridValues = []
+    const min = 0;
+    const max = 5;
 
     //useRefs
     const dragItem = useRef()
@@ -12,7 +14,7 @@ export default function Final() {
     const secondValue = useRef()
 
     // UseStates
-    const [userValue, setUserValue] = useState(0)
+    const [userValue, setUserValue] = useState('')
     const [gridArray, setGridArray] = useState(gridValues)
     const [cardBG, setCardBG] = useState("inherit")
 
@@ -85,8 +87,10 @@ export default function Final() {
 
     // Get value from input field
     const getInputValue = (event) => {
-        let dup = event.target.value
-
+        // let dup = Math.max(min, Math.min(max, Number(event.target.value)))
+        let dup = Math.min(max, Number(event.target.value))
+        // let dup = event.target.value
+        setUserValue(dup)
         // set grid columns and create unique array
         if (dup) {
             // setUserValue passes to useState 
@@ -100,6 +104,7 @@ export default function Final() {
             document.documentElement.style.setProperty('--row-num', dup)
         }
         else {
+            setUserValue('')
             setGridArray([])
         }
     }
@@ -124,10 +129,11 @@ export default function Final() {
                 <div className="flex flex-col gap-2 mx-auto w-full h-1/4 max-w-[500px] text-center justify-center items-center m-4">
                     <h1>Evaluation Test</h1>
                     <input
-                        type="text"
+                        value={userValue}
                         onChange={getInputValue}
-                        className="px-4 py-4 text-4 h-4 border border-black-200 rounded-full"
-                        placeholder="Enter a number here"
+                        type="number"
+                        placeholder="Enter a number between 2 and 5 only!"
+                        className="px-4 py-4 text-4 h-4 border border-black-200 rounded-full w-full max-w-[90%]"
                     />
                 </div>
                 <div
