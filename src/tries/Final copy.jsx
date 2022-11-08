@@ -8,6 +8,10 @@ export default function Final() {
     //useRefs
     const dragItem = useRef()
     const dragOverItem = useRef()
+    // const dragItemResp = useRef()
+    // const dragItemRespTwo = useRef()
+    // const dragOverItemResp = useRef()
+    // const dragOverItemEnd = useRef()
     const firstValue = useRef()
     const secondValue = useRef()
 
@@ -28,54 +32,84 @@ export default function Final() {
     const drop = (e) => {
         const copyListItems = [...gridArray];
         const dragItemContent = copyListItems[dragItem.current];
-
-        // Switch elements of selected tiles
         copyListItems.splice(dragItem.current, 1);
         copyListItems.splice(dragOverItem.current, 0, dragItemContent);
         dragItem.current = null;
         dragOverItem.current = null;
         setGridArray(copyListItems);
-
-        // Comparison with sorted array
         let sorted = sortGridArr(gridArray)
         if (JSON.stringify(copyListItems) === JSON.stringify(sorted)) {
             alert("Welcome to the team!")
         }
     };
 
-    // Swapping Items on Touch
     function handleStart(e, idx) {
         if (firstValue.current) {
-            // Store tile value of second selected tile
             secondValue.current = idx;
+            console.log("Second selected value index: ", secondValue.current)
             const copyListItemsResp = [...gridArray];
-
-            // Switch elements of selected tiles
+            console.log("Copy list: ", copyListItemsResp)
+            console.log("Copy list: ", copyListItemsResp)
+            console.log("First selected value: ", firstValue.current)
             const dragItemContentRespOne = copyListItemsResp[firstValue.current];
             const dragItemContentRespTwo = copyListItemsResp[secondValue.current];
+            console.log("First selected value index: ", firstValue.current)
+            // console.log("First selected value content: ", dragItemContentResp)
             copyListItemsResp.splice(firstValue.current, 1)
             copyListItemsResp.splice(firstValue.current, 0, dragItemContentRespTwo)
             copyListItemsResp.splice(secondValue.current, 1)
             copyListItemsResp.splice(secondValue.current, 0, dragItemContentRespOne)
+            // console.log("Copy list after 1st splice: ", copyListItemsResp)
+            // console.log("Copy list after 2nd splice: ", copyListItemsResp)
             firstValue.current = null
             secondValue.current = null
             setCardBG("inherit")
+            console.log("firstValue: ", firstValue.current)
+            console.log("secondValue: " ,secondValue.current)
             setGridArray(copyListItemsResp);
-
-            // Comparison with sorted array
             let sorted = sortGridArr(gridArray)
             if (JSON.stringify(copyListItemsResp) === JSON.stringify(sorted)) {
                 alert("Welcome to the team!")
             }
         }
         else {
-            // Store tile value of first selected tile
             firstValue.current = idx
-
-            // Set grid background to gray
             setCardBG("zinc-200")
+            // console.log("First selected value: ", firstValue.current )
         }
     }
+
+    // function handleMove(e, idx) {
+    //     dragItemRespTwo.current = idx;
+    //     console.log("On Handle Move: ", dragItemRespTwo.current)
+    // }
+
+    // function handleCancel(e, idx) {
+    //     dragOverItemResp.current = idx;
+    //     console.log("On Handle Cancel: ", dragOverItemResp.current)
+    // }
+
+
+    // function dropResp (e, idx) {
+    //     dragOverItemEnd.current = idx;
+    //     console.log("On Handle End: ", dragOverItemEnd.current)
+    //     // const copyListItemsResp = [...gridArray];
+    //     // console.log("copyListItems" ,copyListItemsResp)
+    //     // const dragItemContentResp = copyListItemsResp[dragItemResp.current];
+    //     // console.log("dragItemContent: ", dragItemContentResp)
+    //     // copyListItemsResp.splice(dragItemResp.current, 1);
+    //     // console.log("copyListItemsResp after 1st splice: ", copyListItemsResp)
+    //     // copyListItemsResp.splice(dragOverItemResp.current, 0, dragItemContentResp);
+    //     // console.log("copyListItemsResp after 2nd splice: ", copyListItemsResp)
+    //     // console.log("New Arr: ", copyListItemsResp)
+    //     // dragItemResp.current = null;
+    //     // dragOverItemResp.current = null;
+    //     // setGridArray(copyListItemsResp);
+    //     // let sorted = sortGridArr(gridArray)
+    //     // if (JSON.stringify(copyListItemsResp) === JSON.stringify(sorted)) {
+    //     //     alert("Welcome to the team!")
+    //     // }
+    // };
 
     function sortGridArr(arr) {
         arr.sort(function (a, b) { return a - b });
@@ -98,6 +132,7 @@ export default function Final() {
             // Sets number of columns and rows for grid
             document.documentElement.style.setProperty('--col-num', dup)
             document.documentElement.style.setProperty('--row-num', dup)
+            console.log(gridArray.length)
         }
         else {
             setGridArray([])
@@ -146,6 +181,8 @@ export default function Final() {
                                 onDragEnter={(e) => dragEnter(e, idx)}
                                 onDragEnd={drop}
                                 draggable>
+
+
                                 {item}
                             </div>
                         )
