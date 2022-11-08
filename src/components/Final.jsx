@@ -132,7 +132,7 @@ export default function Final() {
                         value={userValue}
                         onChange={getInputValue}
                         type="number"
-                        placeholder="Enter a number between 2 and 5 only!"
+                        placeholder="Enter a number up to 5 only!"
                         className="px-4 py-4 text-4 h-4 border border-black-200 rounded-full w-full max-w-[90%]"
                     />
                 </div>
@@ -159,7 +159,7 @@ export default function Final() {
                 </div>
                 <div className='visible md:invisible bg-orange-200 rounded-md p-2 text-sm'>
                     <h2 className='text-red-600 mb-1'><span className='font-bold mr-2'>!</span>Important</h2>
-                    <p>To move tiles on mobile, please tap on two tiles to swap. Once selected, the grid turns gray. Select second tile to swap with first tile.</p>
+                    <p>To move tiles on mobile, please tap on two tiles to swap. Once selected, the grid turns gray. Select second tile to swap with previously selected tile.</p>
                 </div>
             </div>
         </div>
