@@ -151,7 +151,7 @@ export default function Final() {
                         )
                     })}
                 </div>
-                <div className='visible md:invisible bg-orange-400 rounded-md p-2 text-sm'>
+                <div className='visible md:invisible bg-orange-200 rounded-md p-2 text-sm'>
                     <h2 className='text-red-600 mb-1'><span className='font-bold mr-2'>!</span>Important</h2>
                     <p>To move tiles on mobile, please tap on two tiles to swap. Once selected, the grid turns gray. Select second tile to swap with first tile.</p>
                 </div>
