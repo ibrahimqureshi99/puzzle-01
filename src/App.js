@@ -1,10 +1,11 @@
 import "./App.css";
-import Final from "./components/Final";
+// import PuzzleNumbers from "./components/PuzzleNumbers";
+import PuzzleImages from "./components/PuzzleImages";
 
 
 function App() {
   return (
-    <Final />
+    <PuzzleImages />
   );
 }
 

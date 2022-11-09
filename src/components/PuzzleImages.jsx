@@ -1,11 +1,43 @@
 import React, { useState, useRef } from 'react'
+import sq1 from '../assets/4pc/min-sq-1.jpg'
+import sq2 from '../assets/4pc/min-sq-2.jpg'
+import sq3 from '../assets/4pc/min-sq-3.jpg'
+import sq4 from '../assets/4pc/min-sq-4.jpg'
 
-export default function Final() {
+export default function PuzzleNumbers() {
 
     // Variable Definitions
     let gridValues = []
-    const min = 0;
     const max = 5;
+
+    const img = new Image()
+    const imgArray = [
+        {
+            id: 1,
+            img: sq1,
+        },
+        {
+            id: 2,
+            img: sq2,
+        },
+        {
+            id: 3,
+            img: sq3,
+        },
+        {
+            id: 4,
+            img: sq4,
+        },
+    ];
+
+    const shuffledImgArray = [...imgArray];
+    let i = shuffledImgArray.length
+    while (i--) {
+        const ri = Math.floor(Math.random() * i);
+        [shuffledImgArray[i], shuffledImgArray[ri]] = [shuffledImgArray[ri], shuffledImgArray[i]];
+    }
+    console.log(shuffledImgArray);
+
 
     //useRefs
     const dragItem = useRef()
@@ -16,6 +48,7 @@ export default function Final() {
     // UseStates
     const [userValue, setUserValue] = useState('')
     const [gridArray, setGridArray] = useState(gridValues)
+    // const [imgArray, setImageArray] = useState(imageArr)
     const [cardBG, setCardBG] = useState("inherit")
 
     // Draggable Items on desktop
@@ -39,8 +72,8 @@ export default function Final() {
         setGridArray(copyListItems);
 
         // Comparison with sorted array
-        let sorted = sortGridArr(gridArray)
-        if (JSON.stringify(copyListItems) === JSON.stringify(sorted)) {
+        // let sorted = sortGridArr(gridArray)
+        if (JSON.stringify(copyListItems) === JSON.stringify(imgArray)) {
             alert("Welcome to the team!")
         }
     };
@@ -97,7 +130,8 @@ export default function Final() {
             setUserValue(dup)
 
             // create unique array of n x n elements
-            setGridArray(createGridValues(dup * dup))
+            // setGridArray(createGridValues(dup * dup))
+            setGridArray(shuffledImgArray)
 
             // Sets number of columns and rows for grid
             document.documentElement.style.setProperty('--col-num', dup)
@@ -109,18 +143,19 @@ export default function Final() {
         }
     }
 
-    function createGridValues(cols) {
-        for (let i = 0; i < cols; i++) {
-            let num = Math.floor((Math.random() * cols)) + 1
-            if (gridValues.includes(num)) {
-                i = i - 1
-            }
-            else {
-                gridValues.push(num);
-            }
-        }
-        return gridValues
-    }
+    // function createGridValues(cols) {
+    //     for (let i = 0; i < cols; i++) {
+    //         let num = Math.floor((Math.random() * cols)) + 1
+    //         if (gridValues.includes(num)) {
+    //             i = i - 1
+
+    //         }
+    //         else {
+    //             gridValues.push();
+    //         }
+    //     }
+    //     return gridValues
+    // }
 
 
     return (
@@ -142,7 +177,7 @@ export default function Final() {
                     {gridArray?.map((item, idx) => {
                         return (
                             <div key={idx * 1000 * Math.random()}
-                                className={`p-[20px] max-h-[88px] text-[#18181B] text-center border-b border-r bg-${cardBG}`}
+                                className={`p-[5px] text-[#18181B] text-center border-b border-r bg-${cardBG}`}
 
                                 // Touch functions
                                 onTouchStart={(e) => handleStart(e, idx)}
@@ -152,7 +187,8 @@ export default function Final() {
                                 onDragEnter={(e) => dragEnter(e, idx)}
                                 onDragEnd={drop}
                                 draggable>
-                                {item}
+                                {/* {item} */}
+                                <img src={item?.img} />
                             </div>
                         )
                     })}
